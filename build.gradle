@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     // No external dependencies required for this simple library
+    implementation 'com.github.test-android-sdk:4.5.4.70
 }
 
 sourceCompatibility = 1.8
