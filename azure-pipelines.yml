@@ -3,7 +3,7 @@ trigger:
     include:
       - main
       - develop
-pr: none
+  pr: none
 
   paths:
     exclude:
