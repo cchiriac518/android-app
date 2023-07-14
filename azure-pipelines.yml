@@ -23,6 +23,7 @@ jobs:
     fetchTags: true
 
   - script: echo "Library pipeline triggered"
+    displayName: 'Basic echo'
 
   - ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
 
