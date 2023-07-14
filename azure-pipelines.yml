@@ -9,9 +9,12 @@ trigger:
       - version.txt
       - gradle.properties
 
+variables:
+  - group: Mobile-Apps
+
 jobs:
-- job: BuildAndroidApp
-  displayName: 'Build Android app'
+- job: BuildAndroidLibrary
+  displayName: 'Build Android Library'
   pool:
     vmImage: 'macOS-11'
   steps:
@@ -19,7 +22,7 @@ jobs:
     persistCredentials: true
     fetchTags: true
 
-  - script: echo "Pipeline triggered"
+  - script: echo "Library pipeline triggered"
 
   - ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
 
@@ -86,10 +89,18 @@ jobs:
         git push origin --tags
       displayName: 'Create Git Tag and Push'
 
+
+
     - script: |
+        echo "Setting up GitHub CLI"
+        echo $(GITHUB_TOKEN) > gh-token.txt
+        gh auth login --with-token < gh-token.txt
+        rm gh-token.txt
+        git fetch --all --tags
         git checkout $(Build.SourceBranch)
-        git pull
+        echo "Creating PR main->develop"
         gh pr create --base develop --head $(Build.SourceBranch) --title "AZ pipeline PR" --body "Update develop branch after new master version"
+      displayName: 'Create PR to update develop branch with new version'
 
 
 
