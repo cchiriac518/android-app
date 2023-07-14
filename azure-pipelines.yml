@@ -31,11 +31,8 @@ jobs:
       displayName: 'Install gsed'
 
     - script: |
-        curl -LO https://github.com/cli/cli/releases/latest/download/gh_$(curl -s https://api.github.com/repos/cli/cli/releases/latest | grep 'tag_name' | cut -d '"' -f 4)_macOS_amd64.tar.gz
-        tar zxvf gh_*.tar.gz
-        sudo mv gh_*/gh /usr/local/bin/
         gh --version
-      displayName: 'Install github cli'
+      displayName: 'Check github cli'
 
     - script: |
         git fetch --all --tags
@@ -98,9 +95,8 @@ jobs:
         gh auth login --with-token < gh-token.txt
         rm gh-token.txt
         git fetch --all --tags
-        git checkout $(Build.SourceBranch)
         echo "Creating PR main->develop"
-        gh pr create --base develop --head $(Build.SourceBranch) --title "AZ pipeline PR" --body "Update develop branch after new master version"
+        gh pr create --base develop --head $(Build.SourceBranch) --title "AZ pipeline PR v$NEW_TAG" --body "Update develop branch with version $NEW_TAG"
       displayName: 'Create PR to update develop branch with new version'
 
 
