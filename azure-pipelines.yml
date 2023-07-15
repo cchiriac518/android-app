@@ -36,6 +36,8 @@ jobs:
       displayName: 'Check github cli'
 
     - script: |
+        ls -la
+        pwd
         git fetch --all --tags
         LAST_TAG=$(git tag | head -n 1)
         IFS='.' read -ra VERSION_PARTS <<< "$LAST_TAG"
