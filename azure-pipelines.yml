@@ -49,6 +49,9 @@ jobs:
         VERSION_NAME=$(grep "VERSION_NAME" gradle.properties | cut -d'=' -f2)
         VERSION_CODE=$(grep "VERSION_CODE" gradle.properties | cut -d'=' -f2)
 
+        echo $VERSION_NAME
+        echo $VERSION_CODE
+
         PATCH=$((PATCH+1))
         BUILD=$((BUILD+1))
 
@@ -68,6 +71,8 @@ jobs:
         NEW_VERSION_NAME="${MAJOR}.${MINOR}.${PATCH}"
         NEW_VERSION_CODE="${BUILD}"
         
+        echo $NEW_VERSION_NAME
+        echo $NEW_VERSION_CODE
 
         gsed -i "s/${VERSION_NAME}/${NEW_VERSION_NAME}/" ./gradle.properties
         gsed -i "s/${VERSION_CODE}/${NEW_VERSION_CODE}/" ./gradle.properties
