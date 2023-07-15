@@ -8,7 +8,7 @@ trigger:
     exclude:
       - version.txt
       - gradle.properties
-  pr: none
+
 
 variables:
   - group: Mobile-Apps
