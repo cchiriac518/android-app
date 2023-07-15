@@ -8,6 +8,7 @@ trigger:
     exclude:
       - version.txt
       - gradle.properties
+  pr: none
 
 variables:
   - group: Mobile-Apps
@@ -36,7 +37,7 @@ jobs:
 
     - script: |
         git fetch --all --tags
-        LAST_TAG=$(git tag | tail -n 1)
+        LAST_TAG=$(git tag | head -n 1)
         IFS='.' read -ra VERSION_PARTS <<< "$LAST_TAG"
         MAJOR=${VERSION_PARTS[0]#v}
         MINOR=${VERSION_PARTS[1]}
