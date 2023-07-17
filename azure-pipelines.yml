@@ -83,13 +83,13 @@ jobs:
         echo "##vso[task.setvariable variable=NEW_TAG]$NEW_TAG"
         echo "##vso[task.setvariable variable=OLD_APP_VERSION]$LAST_TAG"
 
-      displayName: 'Get Last Tag and Increment Minor Version'
+      displayName: 'Get Latest Tag and Increment Version'
 
     - script: |
         echo "Creating Git tag $NEW_TAG"
         git tag $NEW_TAG
         git push origin --tags
-      displayName: 'Create Git Tag and Push'
+      displayName: 'Create Updated Tag and Push'
 
     - script: |
         echo "Setting up GitHub CLI"
