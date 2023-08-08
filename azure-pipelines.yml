@@ -6,7 +6,7 @@ trigger:
 
   paths:
     exclude:
-      - version.txt
+      - build.gradle
       - gradle.properties
 
 variables:
