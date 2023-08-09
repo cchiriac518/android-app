@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     // No external dependencies required for this simple library
-    implementation 'com.github.aacom:aa-android-sdk:5.0.2.131
+    implementation 'com.github.aacom:aa-android-sdk:5.0.3.132
 }
 
 sourceCompatibility = 1.8
